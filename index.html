@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking — Melian Graduation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-page: #f4f6fb;
+      --bg-card: #ffffff;
+      --bg-soft: #f8fafc;
+      --primary: #1b365d;
+      --primary-dark: #102340;
+      --accent: #0f766e;
+      --accent-soft: #f0fdfa;
+      --gold-soft: #fffbeb;
+      --gold-border: #fcd34d;
+      --blue-soft: #eff6ff;
+      --blue-border: #bfdbfe;
+      --wa-green: #16a34a;
+      --wa-green-dark: #15803d;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --ring: rgba(27, 54, 93, 0.14);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --shadow: 0 18px 45px -15px rgba(15, 23, 42, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(27, 54, 93, 0.08), transparent 45%),
+        radial-gradient(circle at top right, rgba(15, 118, 110, 0.08), transparent 40%),
+        var(--bg-page);
+      color: var(--text-main);
+      padding: 24px 16px 48px;
+      line-height: 1.55;
+    }
+
+    .wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #102340 0%, #1b365d 58%, #164e63 100%);
+      color: #ffffff;
+      padding: 28px 24px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      right: -45px;
+      top: -55px;
+    }
+
+    .badge-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #f8fafc;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 11px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .hero p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 440px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      padding: 24px;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-top: none;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 22px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title:first-of-type { margin-top: 0; }
+
+    .section-title span.step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .field { margin-bottom: 14px; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    label.field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="time"] {
+      width: 100%;
+      padding: 11px 13px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text-main);
+      background: var(--bg-soft);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    }
+
+    input:focus {
+      outline: none;
+      background: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+
+    .package-grid { display: grid; gap: 10px; }
+
+    .package-option {
+      position: relative;
+      display: block;
+      cursor: pointer;
+    }
+
+    .package-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .package-box {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      background: #ffffff;
+      transition: all 0.2s ease;
+    }
+
+    .package-option:hover .package-box {
+      border-color: #94a3b8;
+      transform: translateY(-1px);
+    }
+
+    .package-option input[type="radio"]:checked + .package-box {
+      border-color: var(--primary);
+      background: #f8faff;
+      box-shadow: 0 0 0 3px var(--ring);
+    }
+
+    .pkg-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .pkg-name-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pkg-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .pkg-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .tag-basic { background: #dcfce7; color: #166534; }
+    .tag-standart { background: #fef9c3; color: #854d0e; }
+    .tag-premium { background: #dbeafe; color: #1e40af; }
+
+    .pkg-price {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .pkg-features {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .addon-list { display: grid; gap: 8px; }
+
+    .addon-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-soft);
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .addon-card:hover {
+      border-color: #cbd5e1;
+      background: #ffffff;
+    }
+
+    .addon-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .addon-card input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--primary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .addon-card:has(input:checked) {
+      background: var(--accent-soft);
+      border-color: #14b8a6;
+    }
+
+    .addon-price {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* Summary Box */
+    .summary-box {
+      margin-top: 20px;
+      background: linear-gradient(180deg, #f0fdf4 0%, #ecfdf5 100%);
+      border: 1.5px solid #86efac;
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+      font-weight: 700;
+      color: #14532d;
+    }
+
+    .summary-total-val {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .summary-dp-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed #6ee7b7;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1d4ed8;
+    }
+
+    .summary-sub {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #166534;
+    }
+
+    /* Payment Card */
+    .payment-card {
+      background: var(--blue-soft);
+      border: 1px solid var(--blue-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    .payment-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .payment-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #1e40af;
+    }
+
+    .payment-chip {
+      font-size: 11px;
+      font-weight: 700;
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .rek-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+
+    .rek-number {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-copy {
+      padding: 6px 12px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      color: #1e3a8a;
+      background: #ffffff;
+      border: 1px solid #93c5fd;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-copy:hover { background: #dbeafe; }
+
+    .btn-copy.copied {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #166534;
+    }
+
+    .rek-holder {
+      font-size: 13px;
+      color: #334155;
+      margin-bottom: 12px;
+    }
+
+    /* QRIS Box */
+    .qris-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .qris-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .qris-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .qris-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .btn-zoom-qris {
+      padding: 5px 10px;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-zoom-qris:hover { background: #e2e8f0; }
+
+    .qris-img {
+      width: 210px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      cursor: zoom-in;
+      display: inline-block;
+      image-rendering: pixelated;
+    }
+
+    .qris-caption {
+      margin-top: 8px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    /* Upload Bukti Transfer Box */
+    .upload-box {
+      background: #ffffff;
+      border: 1.5px dashed #60a5fa;
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .upload-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 4px;
+    }
+
+    .upload-hint {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    input[type="file"] {
+      width: 100%;
+      font-family: inherit;
+      font-size: 12.5px;
+      color: #334155;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .preview-wrap {
+      display: none;
+      margin-top: 10px;
+      align-items: center;
+      gap: 10px;
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      padding: 8px 10px;
+      border-radius: 8px;
+    }
+
+    .preview-wrap img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .preview-info {
+      font-size: 12px;
+      color: #166534;
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .btn-clear-file {
+      background: none;
+      border: none;
+      color: #dc2626;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .dp-note {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #1e3a8a;
+      background: rgba(255, 255, 255, 0.72);
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      border-left: 3px solid #2563eb;
+    }
+
+    /* Modal QRIS */
+    .qris-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 999;
+    }
+
+    .qris-modal.open { display: flex; }
+
+    .qris-modal-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 20px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .qris-modal-card h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .qris-modal-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .qris-modal-card img {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+      image-rendering: pixelated;
+    }
+
+    .btn-close-modal {
+      width: 100%;
+      padding: 10px 14px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      background: var(--primary);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+
+    /* Terms Box */
+    .terms-box {
+      margin-top: 18px;
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-border);
+      border-left: 4px solid #f59e0b;
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      font-size: 12px;
+      color: #334155;
+    }
+
+    .terms-box strong.terms-head {
+      display: block;
+      font-size: 12.5px;
+      color: #92400e;
+      margin-bottom: 6px;
+    }
+
+    .terms-box ul {
+      padding-left: 16px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .agree-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 16px 0 18px;
+      font-size: 12.5px;
+      color: #334155;
+      cursor: pointer;
+    }
+
+    .agree-row input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      margin-top: 1px;
+      accent-color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px 18px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      box-shadow: 0 10px 20px -8px rgba(27, 54, 93, 0.5);
+      transition: transform 0.15s, opacity 0.2s;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-1px);
+      opacity: 0.96;
+    }
+
+    .btn-submit:disabled {
+      background: #94a3b8;
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .status-box {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      display: none;
+    }
+
+    .status-success {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+
+    .status-error {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+      width: 100%;
+      padding: 12px 16px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      background: var(--wa-green);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: background-color 0.15s;
+    }
+
+    .btn-wa:hover { background: var(--wa-green-dark); }
+
+    @media (max-width: 500px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .hero { padding: 22px 18px; }
+      .card { padding: 18px; }
+      .hero h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="hero">
+      <div class="badge-brand">Graduation Photography</div>
+      <h1>Melian Graduation</h1>
+      <p>Abadikan momen kelulusan terbaikmu dengan alur booking cepat, transparan, dan jadwal tertata.</p>
+    </header>
+
+    <main class="card">
+      <form id="form-booking">
+        <div class="section-title"><span class="step">1</span> Data Diri &amp; Kontak</div>
+
+        <div class="field">
+          <label class="field-label" for="nama">Nama Lengkap &amp; Gelar *</label>
+          <input type="text" id="nama" placeholder="Contoh: Adil Pratama, S.Kom." required />
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label class="field-label" for="wa">Nomor WhatsApp Aktif *</label>
+            <input type="tel" id="wa" placeholder="Contoh: 081234567890" required />
+          </div>
+          <div class="field">
+            <label class="field-label" for="instagram">Akun Instagram *</label>
+            <input type="text" id="instagram" placeholder="Contoh: @adilpratama" required />
+          </div>
+        </div>
+
+        <div class="section-title"><span class="step">2</span> Waktu &amp; Lokasi Pemotretan</div>
+
+        <div class="field">
+          <label class="field-label" for="kampus">Universitas / Fakultas &amp; Lokasi Sesi *</label>
+          <input type="text" id="kampus" placeholder="Contoh: Universitas Brawijaya - Gedung Rektorat" required />
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label class="field-label" for="tanggal">Tanggal Acara Wisuda *</label>
+            <input type="date" id="tanggal" required />
+          </div>
+          <div class="field">
+            <label class="field-label" for="jam">Jam Mulai Sesi *</label>
+            <input type="time" id="jam" required />
+          </div>
+        </div>
+
+        <div class="section-title"><span class="step">3</span> Pilihan Paket</div>
+
+        <div class="package-grid">
+          <label class="package-option">
+            <input type="radio" name="paket" value="Basic — 250k (30 Menit, Unlimited Shoot, Edit 15 Foto)" data-price="250000" required />
+            <div class="package-box">
+              <div class="pkg-head">
+                <div class="pkg-name-wrap">
+                  <span class="pkg-name">Basic</span>
+                  <span class="pkg-tag tag-basic">Hemat</span>
+                </div>
+                <span class="pkg-price">Rp250.000</span>
+              </div>
+              <div class="pkg-features">30 Menit • Unlimited Shoot • Edit 15 Foto</div>
+            </div>
+          </label>
+
+          <label class="package-option">
+            <input type="radio" name="paket" value="Standart — 350k (60 Menit, Unlimited Shoot, Edit 30 Foto)" data-price="350000" required />
+            <div class="package-box">
+              <div class="pkg-head">
+                <div class="pkg-name-wrap">
+                  <span class="pkg-name">Standart</span>
+                  <span class="pkg-tag tag-standart">Favorit</span>
+                </div>
+                <span class="pkg-price">Rp350.000</span>
+              </div>
+              <div class="pkg-features">60 Menit • Unlimited Shoot • Edit 30 Foto</div>
+            </div>
+          </label>
+
+          <label class="package-option">
+            <input type="radio" name="paket" value="Premium — 600k (120 Menit, Edit 60 Foto)" data-price="600000" required />
+            <div class="package-box">
+              <div class="pkg-head">
+                <div class="pkg-name-wrap">
+                  <span class="pkg-name">Premium</span>
+                  <span class="pkg-tag tag-premium">Lengkap</span>
+                </div>
+                <span class="pkg-price">Rp600.000</span>
+              </div>
+              <div class="pkg-features">120 Menit • Edit 60 Foto</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="section-title"><span class="step">4</span> Add-On Tambahan (Opsional)</div>
+
+        <div class="addon-list">
+          <label class="addon-card">
+            <span class="addon-left">
+              <input type="checkbox" name="addon" value="Extra 30 Minutes (+150k)" data-price="150000" />
+              <span>Extra 30 Minutes</span>
+            </span>
+            <span class="addon-price">+Rp150.000</span>
+          </label>
+
+          <label class="addon-card">
+            <span class="addon-left">
+              <input type="checkbox" name="addon" value="Video (+200k)" data-price="200000" />
+              <span>Video</span>
+            </span>
+            <span class="addon-price">+Rp200.000</span>
+          </label>
+
+          <label class="addon-card">
+            <span class="addon-left">
+              <input type="checkbox" name="addon" value="Raw File — All File (+100k)" data-price="100000" />
+              <span>Raw File — All File</span>
+            </span>
+            <span class="addon-price">+Rp100.000</span>
+          </label>
+
+          <label class="addon-card">
+            <span class="addon-left">
+              <input type="checkbox" name="addon" value="15 Foto Edit (+20k)" data-price="20000" />
+              <span>15 Foto Edit</span>
+            </span>
+            <span class="addon-price">+Rp20.000</span>
+          </label>
+
+          <label class="addon-card">
+            <span class="addon-left">
+              <input type="checkbox" name="addon" value="30 Foto Edit (+30k)" data-price="30000" />
+              <span>30 Foto Edit</span>
+            </span>
+            <span class="addon-price">+Rp30.000</span>
+          </label>
+
+          <label class="addon-card">
+            <span class="addon-left">
+              <input type="checkbox" name="addon" value="Outside Campus Session Request (Konfirmasi Admin)" data-price="0" data-confirm="true" />
+              <span>Outside Campus Session Request</span>
+            </span>
+            <span class="addon-price">Konfirmasi Admin</span>
+          </label>
+        </div>
+
+        <section class="summary-box">
+          <div class="summary-row">
+            <span>Estimasi Total Harga</span>
+            <span class="summary-total-val" id="total-harga">Rp0</span>
+          </div>
+          <div class="summary-dp-row">
+            <span>Nominal DP (50%)</span>
+            <span id="total-dp">Rp0</span>
+          </div>
+          <div class="summary-sub" id="rincian-harga">Pilih paket terlebih dahulu untuk melihat estimasi total dan DP 50%.</div>
+        </section>
+
+        <section class="payment-card">
+          <div class="payment-top">
+            <span class="payment-label">Informasi Pembayaran</span>
+            <span class="payment-chip">Wajib DP 50%</span>
+          </div>
+          <div class="rek-row">
+            <span class="rek-number" id="no-rekening">0028 6275 8967 — BLU BCA</span>
+            <button type="button" class="btn-copy" id="btn-salin-rek">Salin No. Rek</button>
+          </div>
+          <div class="rek-holder">Atas nama: <strong>Nibrasul Adil</strong></div>
+
+          <div class="qris-box">
+            <div class="qris-header">
+              <div>
+                <div class="qris-title">Scan QRIS (E-Wallet &amp; Mobile Banking)</div>
+                <div class="qris-sub">Klik barcode untuk memperbesar</div>
+              </div>
+              <button type="button" class="btn-zoom-qris" id="btn-perbesar-qris">Perbesar QRIS</button>
+            </div>
+            <img src="data:image/png;base64,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" alt="Barcode QRIS Melian Graduation" class="qris-img" id="img-qris" />
+            <div class="qris-caption">Mendukung QRIS semua bank &amp; e-wallet (GoPay, OVO, DANA, ShopeePay, m-Banking).</div>
+          </div>
+
+          <div class="upload-box">
+            <label class="upload-label" for="bukti-tf">Upload Bukti Transfer DP (Opsional / Langsung Upload)</label>
+            <div class="upload-hint">Unggah screenshot transfer DP 50% (JPG/PNG) agar jadwal lebih cepat diverifikasi &amp; diterbitkan Invoice resmi.</div>
+            <input type="file" id="bukti-tf" accept="image/*" />
+            <div class="preview-wrap" id="preview-wrap">
+              <img id="preview-img" src="" alt="Preview Bukti Transfer" />
+              <div class="preview-info" id="preview-name">Bukti siap dikirim</div>
+              <button type="button" class="btn-clear-file" id="btn-hapus-file">Hapus</button>
+            </div>
+          </div>
+
+          <div class="dp-note">Setelah bukti transfer diverifikasi admin, Invoice PDF resmi akan dikirimkan ke WhatsApp Anda.</div>
+        </section>
+
+        <section class="terms-box">
+          <strong class="terms-head">Syarat &amp; Ketentuan Booking</strong>
+          <ul>
+            <li><strong>Uang Muka (DP):</strong> Wajib DP minimal 50% dari total pesanan untuk mengamankan slot jadwal.</li>
+            <li><strong>Pelunasan:</strong> Dilakukan maksimal H-1 sebelum sesi pemotretan.</li>
+            <li><strong>Pembatalan &amp; Reschedule:</strong> DP hangus jika dibatalkan. Perubahan jadwal maksimal H-7 (kecuali <em>force majeure</em>).</li>
+            <li><strong>Keterlambatan:</strong> Tidak ada tambahan waktu; <em>overtime</em> dikenakan biaya tambahan.</li>
+            <li><strong>Pengiriman File:</strong> Dikirim maksimal H+7 via Google Drive setelah pelunasan, dan file di Drive akan dihapus setelah dikirim.</li>
+          </ul>
+        </section>
+
+        <label class="agree-row" for="setuju-sk">
+          <input type="checkbox" id="setuju-sk" required />
+          <span>Saya telah membaca dan menyetujui seluruh Syarat &amp; Ketentuan yang berlaku.</span>
+        </label>
+
+        <button type="submit" id="tombol-kirim" class="btn-submit">Kirim Data Booking</button>
+        <div id="pesan-status" class="status-box"></div>
+      </form>
+    </main>
+  </div>
+
+  <!-- Modal Perbesar QRIS -->
+  <div class="qris-modal" id="qris-modal" role="dialog" aria-modal="true" aria-labelledby="modal-qris-title">
+    <div class="qris-modal-card">
+      <h3 id="modal-qris-title">QRIS Melian Graduation</h3>
+      <p>Arahkan kamera aplikasi pembayaran Anda ke barcode di bawah ini</p>
+      <img src="data:image/png;base64,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" alt="Barcode QRIS Melian Graduation" />
+      <button type="button" class="btn-close-modal" id="btn-tutup-qris">Tutup</button>
+    </div>
+  </div>
+
+  <script>
+    const URL_SPREADSHEET = 'https://script.google.com/macros/s/AKfycbwqQl_LTh28dWkrHGtktU8yH0h7QGO4sZ0Nsn3kj3Iy93BrXTaVZ8W7J6iNl044DZ_K/exec';
+    const NO_WA_ADMIN = '6285959868232';
+    const NO_REKENING_POLOS = '002862758967';
+
+    const form = document.getElementById('form-booking');
+    const btnSalinRek = document.getElementById('btn-salin-rek');
+    const imgQris = document.getElementById('img-qris');
+    const btnPerbesarQris = document.getElementById('btn-perbesar-qris');
+    const btnTutupQris = document.getElementById('btn-tutup-qris');
+    const qrisModal = document.getElementById('qris-modal');
+    const paketRadios = document.querySelectorAll('input[name="paket"]');
+    const addonCheckboxes = document.querySelectorAll('input[name="addon"]');
+    const totalHargaEl = document.getElementById('total-harga');
+    const totalDpEl = document.getElementById('total-dp');
+    const rincianHargaEl = document.getElementById('rincian-harga');
+    const inputBuktiTf = document.getElementById('bukti-tf');
+    const previewWrap = document.getElementById('preview-wrap');
+    const previewImg = document.getElementById('preview-img');
+    const previewName = document.getElementById('preview-name');
+    const btnHapusFile = document.getElementById('btn-hapus-file');
+    const tombolKirim = document.getElementById('tombol-kirim');
+    const pesanStatus = document.getElementById('pesan-status');
+
+    let buktiBase64Data = '';
+    let buktiMimeData = '';
+
+    function formatRupiah(angka) {
+      return 'Rp' + angka.toLocaleString('id-ID');
+    }
+
+    function prosesGambarBukti(file) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = function (ev) {
+          const img = new Image();
+          img.onload = function () {
+            const maxDim = 1200;
+            let w = img.width;
+            let h = img.height;
+            if (w > maxDim || h > maxDim) {
+              if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+              else { w = Math.round(w * maxDim / h); h = maxDim; }
+            }
+            const canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+            resolve({
+              base64: dataUrl.split(',')[1],
+              mime: 'image/jpeg',
+              preview: dataUrl
+            });
+          };
+          img.src = ev.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    inputBuktiTf.addEventListener('change', async function () {
+      const file = inputBuktiTf.files[0];
+      if (!file) return;
+      const hasil = await prosesGambarBukti(file);
+      buktiBase64Data = hasil.base64;
+      buktiMimeData = hasil.mime;
+      previewImg.src = hasil.preview;
+      previewName.textContent = file.name + ' (Siap di-upload)';
+      previewWrap.style.display = 'flex';
+    });
+
+    btnHapusFile.addEventListener('click', function () {
+      inputBuktiTf.value = '';
+      buktiBase64Data = '';
+      buktiMimeData = '';
+      previewWrap.style.display = 'none';
+    });
+
+    function ambilDataPerhitungan() {
+      const paketDipilih = document.querySelector('input[name="paket"]:checked');
+      const hargaPaket = paketDipilih ? Number(paketDipilih.dataset.price || 0) : 0;
+      let hargaAddon = 0;
+      let konfirmasiAdmin = false;
+      let jmlAddon = 0;
+      const addonDipilih = [];
+
+      addonCheckboxes.forEach(cb => {
+        if (cb.checked) {
+          jmlAddon++;
+          hargaAddon += Number(cb.dataset.price || 0);
+          addonDipilih.push(cb.value);
+          if (cb.dataset.confirm === 'true') konfirmasiAdmin = true;
+        }
+      });
+
+      const total = hargaPaket + hargaAddon;
+      const dp = Math.round(total * 0.5);
+
+      let teksTotal = formatRupiah(total);
+      let teksDp = formatRupiah(dp);
+
+      if (konfirmasiAdmin) {
+        teksTotal = total > 0 ? teksTotal + ' + konfirmasi admin' : 'Menunggu konfirmasi admin';
+        teksDp = dp > 0 ? teksDp + ' (+ 50% biaya luar kampus)' : 'Menunggu konfirmasi admin';
+      }
+
+      return { paketDipilih, hargaPaket, hargaAddon, jmlAddon, addonDipilih, total, dp, teksTotal, teksDp };
+    }
+
+    function hitungTotal() {
+      const data = ambilDataPerhitungan();
+      totalHargaEl.textContent = data.teksTotal;
+      totalDpEl.textContent = data.teksDp;
+
+      if (!data.paketDipilih) {
+        rincianHargaEl.textContent = 'Pilih paket terlebih dahulu untuk melihat estimasi total dan DP 50%.';
+      } else {
+        rincianHargaEl.textContent =
+          'Paket: ' + formatRupiah(data.hargaPaket) +
+          ' | Add-On (' + data.jmlAddon + '): ' + formatRupiah(data.hargaAddon) +
+          ' | Sisa Pelunasan: ' + formatRupiah(data.total - data.dp);
+      }
+    }
+
+    function buatLinkWhatsApp(payload, sudahUploadBukti) {
+      const pesan = [
+        'Halo Admin *Melian Graduation*, saya sudah mengisi form booking wisuda:',
+        '',
+        '• Nama: ' + payload.nama,
+        '• No. WA: ' + payload.wa,
+        '• Instagram: ' + payload.instagram,
+        '• Lokasi: ' + payload.kampus,
+        '• Jadwal: ' + payload.tanggal + ' jam ' + payload.jam,
+        '• Paket: ' + payload.paket,
+        '• Add-On: ' + payload.addon,
+        '• Estimasi Total: ' + payload.estimasiTotal,
+        '• DP (50%): ' + payload.dp50,
+        '',
+        sudahUploadBukti
+          ? 'Bukti pembayaran DP sudah saya unggah di form booking. Mohon dibantu verifikasi dan penerbitan Invoice ya Min!'
+          : 'Berikut saya lampirkan bukti pembayaran DP (Transfer BLU BCA / QRIS) a.n. Nibrasul Adil.'
+      ].join('\n');
+
+      return 'https://wa.me/' + NO_WA_ADMIN + '?text=' + encodeURIComponent(pesan);
+    }
+
+    function tampilkanStatusSukses(payload, sudahUploadBukti) {
+      const waUrl = buatLinkWhatsApp(payload, sudahUploadBukti);
+      const infoBukti = sudahUploadBukti
+        ? 'Data booking &amp; <strong>bukti transfer DP</strong> berhasil diunggah! Klik tombol di bawah untuk konfirmasi ke WhatsApp admin agar Invoice PDF segera diterbitkan:'
+        : 'Data booking berhasil masuk! Silakan transfer DP 50% via <strong>BLU BCA 0028 6275 8967</strong> atau <strong>QRIS</strong> a.n. <strong>Nibrasul Adil</strong>, lalu kirim buktinya lewat WhatsApp di bawah ini:';
+
+      pesanStatus.innerHTML =
+        '<div>' + infoBukti + '</div>' +
+        '<a href="' + waUrl + '" target="_blank" rel="noopener noreferrer" class="btn-wa">Konfirmasi &amp; Minta Invoice via WhatsApp</a>';
+      pesanStatus.className = 'status-box status-success';
+      pesanStatus.style.display = 'block';
+    }
+
+    function tampilkanStatusGagal(teks) {
+      pesanStatus.textContent = teks;
+      pesanStatus.className = 'status-box status-error';
+      pesanStatus.style.display = 'block';
+    }
+
+    function bukaModalQris() { qrisModal.classList.add('open'); }
+    function tutupModalQris() { qrisModal.classList.remove('open'); }
+
+    btnSalinRek.addEventListener('click', async function () {
+      try {
+        await navigator.clipboard.writeText(NO_REKENING_POLOS);
+        btnSalinRek.textContent = 'Tersalin!';
+        btnSalinRek.classList.add('copied');
+        setTimeout(() => {
+          btnSalinRek.textContent = 'Salin No. Rek';
+          btnSalinRek.classList.remove('copied');
+        }, 2000);
+      } catch (e) {
+        btnSalinRek.textContent = NO_REKENING_POLOS;
+      }
+    });
+
+    imgQris.addEventListener('click', bukaModalQris);
+    btnPerbesarQris.addEventListener('click', bukaModalQris);
+    btnTutupQris.addEventListener('click', tutupModalQris);
+    qrisModal.addEventListener('click', function (e) {
+      if (e.target === qrisModal) tutupModalQris();
+    });
+
+    paketRadios.forEach(radio => radio.addEventListener('change', hitungTotal));
+    addonCheckboxes.forEach(cb => cb.addEventListener('change', hitungTotal));
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      let igRaw = document.getElementById('instagram').value.trim();
+      if (igRaw && !igRaw.startsWith('@')) igRaw = '@' + igRaw;
+
+      const data = ambilDataPerhitungan();
+      const sudahUploadBukti = Boolean(buktiBase64Data);
+
+      const payload = {
+        nama: document.getElementById('nama').value.trim(),
+        wa: document.getElementById('wa').value.trim(),
+        instagram: igRaw,
+        kampus: document.getElementById('kampus').value.trim(),
+        tanggal: document.getElementById('tanggal').value,
+        jam: document.getElementById('jam').value,
+        paket: data.paketDipilih ? data.paketDipilih.value : '',
+        addon: data.addonDipilih.length ? data.addonDipilih.join(', ') : 'Tidak ada',
+        estimasiTotal: data.teksTotal,
+        dp50: data.teksDp,
+        nominalTotal: data.total,
+        nominalDp: data.dp,
+        buktiBase64: buktiBase64Data,
+        buktiMimeType: buktiMimeData
+      };
+
+      tombolKirim.disabled = true;
+      tombolKirim.textContent = sudahUploadBukti ? 'Mengunggah Bukti & Data...' : 'Mengirim Data Booking...';
+      pesanStatus.style.display = 'none';
+
+      try {
+        await fetch(URL_SPREADSHEET, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+
+        form.reset();
+        buktiBase64Data = '';
+        buktiMimeData = '';
+        previewWrap.style.display = 'none';
+        hitungTotal();
+        tampilkanStatusSukses(payload, sudahUploadBukti);
+      } catch (err) {
+        tampilkanStatusGagal('Gagal mengirim data. Coba periksa koneksi internet Anda.');
+      } finally {
+        tombolKirim.disabled = false;
+        tombolKirim.textContent = 'Kirim Data Booking';
+      }
+    });
+  </script>
+</body>
+</html>
